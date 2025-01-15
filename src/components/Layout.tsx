@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -12,46 +10,43 @@ const Layout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="h-screen  flex bg-white dark:bg-gray-900 relative">
+    <div className="h-screen flex bg-white dark:bg-gray-900 relative">
       {/* Sidebar */}
       {sidebarOpen && (
-      <div
-        className={` fixed z-40 max-h-screen bg-white dark:bg-gray-800 h-full transition-transform duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:translate-x-0 w-64 shadow-md`}
-      >
-        <div className="flex items-center justify-between p-3">
-        <img src={logo} alt="logo" className="h-8 w-25 top-0" />
-        <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-          >
-            {sidebarOpen ? (
+        <div
+          className={`fixed z-40 bg-white dark:bg-gray-800 transition-transform duration-300 ease-in-out ${
+            sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+          } lg:translate-x-0 lg:max-h-screen lg:static lg:w-64 shadow-md ${
+            window.innerWidth < 1024 ? 'w-full h-full' : 'w-64'
+          }`}
+        >
+          <div className="flex items-center justify-between p-3">
+            <img src={logo} alt="logo" className="h-8 w-25 top-0" />
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+            >
               <X className="h-6 w-6 text-gray-600 dark:text-gray-300" />
-            ) : (
-              <Menu className="h-6 w-6 text-gray-600 dark:text-gray-300" />
-            )}
-          </button>
+            </button>
+          </div>
+          <Sidebar />
         </div>
-        <Sidebar   />
-      </div>
       )}
 
       {/* Main content */}
       <div
-        className={`flex-1 flex flex-col top-4  overflow-hidden transition-all duration-300 ${sidebarOpen ? 'ml-64' : 'ml-0'
-          }`}
+        className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${
+          sidebarOpen && window.innerWidth >= 1024 ? 'ml-' : 'ml-0'
+        }`}
       >
         {/* Mobile menu button for closed sidebar */}
         {!sidebarOpen && (
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="fixed left-4 top-2 flex justify-center items-center gap-2  z-50 p-2   dark:bg-gray-800 "
+            className="fixed left-4 top-2 flex justify-center items-center gap-2 z-50 p-2 dark:bg-gray-800 rounded-lg"
           >
             <Menu className="h-6 w-6 text-gray-600 dark:text-gray-300" />
-          {/* logo */}
-          <img src={logo} alt="logo" className="h-8 w-25 top-0" />
-
-            
+            <img onClick={() => window.location.href = '/'} src={logo} alt="logo" className="h-8 w-25" />
           </button>
         )}
         <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />

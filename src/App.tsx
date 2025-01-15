@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import Auth from './components/Auth';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
+import { Router } from 'react-router-dom';
 
 const AppContent = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);

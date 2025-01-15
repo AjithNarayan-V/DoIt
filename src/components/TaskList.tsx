@@ -54,7 +54,17 @@ const TaskList = () => {
   const notCompletedTasks = filteredTasks.filter((task) => !task.completed);
   const completedTasks = filteredTasks.filter((task) => task.completed);
 
-  const renderTask = (task) => (
+  interface Task {
+    id: string;
+    title: string;
+    completed: boolean;
+    important: boolean;
+    favorite: boolean;
+    dueDate?: string;
+    category?: string;
+  }
+
+  const renderTask = (task: Task) => (
     <div
       key={task.id}
       className={`flex flex-wrap items-center px-4 py-2 bg-white dark:bg-inherit border rounded-md ${task.completed ? 'border-green-200 dark:border-green-900' : 'dark:border-gray-700'
@@ -79,7 +89,7 @@ const TaskList = () => {
           </p>
         )}
       </div>
-  
+
       <div className="flex items-center space-x-2 mt-2 sm:mt-0">
         <button
           onClick={() => dispatch(toggleFavorite(task.id))}
@@ -88,7 +98,7 @@ const TaskList = () => {
         >
           <Heart className="h-5 w-5" />
         </button>
-  
+
         <button
           onClick={() => dispatch(toggleImportant(task.id))}
           className={`p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 ${task.important ? 'text-yellow-500' : 'text-gray-400 dark:text-gray-300'
@@ -96,7 +106,7 @@ const TaskList = () => {
         >
           <Star className="h-5 w-5" />
         </button>
-  
+
         <button
           onClick={() => openEditPanel(task)}
           className="p-1 text-gray-400 dark:text-gray-300 hover:text-green-500 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -107,7 +117,7 @@ const TaskList = () => {
     </div>
   );
   
-  const renderTaskGrid = (task) => (
+  const renderTaskGrid = (task: Task) => (
     <div
       key={task.id}
       className="p-4 bg-white dark:bg-inherit border rounded-lg shadow-sm max-w-full"

@@ -40,7 +40,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 max-h-screen bg-[#EEF6EF] dark:bg-gray-800 h-[95vh] p-4 flex flex-col transition-colors duration-200">
+    <aside className="w-full sm:w-64  bg-[#EEF6EF] dark:bg-gray-800 h-[90vh] sm:h-[95vh] p-4 flex flex-col transition-colors duration-200">
 
       <div className="flex-col justify-center mx-auto items-center space-x-3">
         <img

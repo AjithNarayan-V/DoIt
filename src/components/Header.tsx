@@ -4,7 +4,7 @@ import { RootState } from '../store';
 import { toggleTheme } from '../store/slices/themeSlice';
 import { toggleGrid } from '../store/slices/authSlice';
 import { logout } from '../store/slices/authSlice';
-import { Search, Bell, Sun, Moon, LogOut, Menu, Grid2X2 } from 'lucide-react';
+import { Search, Sun, Moon, LogOut, Grid2X2 } from 'lucide-react';
 import { setSearchQuery } from '../store/slices/taskSlice';
 
 interface HeaderProps {
@@ -56,9 +56,6 @@ const Header = ({ onMenuClick }: HeaderProps) => {
               <Moon className="h-5 w-5 text-gray-600 dark:text-gray-300" />
             )}
           </button>
-
-
-
           <button
             onClick={() => dispatch(logout())}
             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"

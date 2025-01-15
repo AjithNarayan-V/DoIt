@@ -1,14 +1,29 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-    toggleComplete,
     deleteTask,
     toggleImportant,
     updateTask,
 } from '../store/slices/taskSlice';
 import { X, Trash2, Check, Star, Calendar, Repeat, Bell, Edit3 } from 'lucide-react';
 
-const TaskEditPanel = ({ task, onClose }) => {
+interface Task {
+    id: string;
+    title: string;
+    notes: string;
+    dueDate?: string;
+    setReminder: boolean;
+    repeat: boolean;
+    completed: boolean;
+    important: boolean;
+}
+
+interface TaskEditPanelProps {
+    task: Task;
+    onClose: () => void;
+}
+
+const TaskEditPanel: React.FC<TaskEditPanelProps> = ({ task, onClose }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState(task?.title || '');
     const [notes, setNotes] = useState(task?.notes || '');
@@ -25,16 +40,13 @@ const TaskEditPanel = ({ task, onClose }) => {
             setReminder: reminder,
             repeat,
         };
-
         dispatch(updateTask(updatedTask));
         onClose();
     };
-
     const handleDelete = () => {
         dispatch(deleteTask(task.id));
         onClose();
     };
-
     return (
         <div className="fixed right-0 top-0 h-full w-full sm:w-1/3 dark:text-white bg-[#EEF6EF] dark:bg-gray-800 shadow-lg p-6 flex flex-col justify-between">
             {/* Header */}

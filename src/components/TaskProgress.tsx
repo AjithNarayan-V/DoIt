@@ -47,7 +47,7 @@ const TaskProgress: React.FC<TaskProgressProps> = ({ tasks }) => {
   };
 
   return (
-    <div className="relative w-50 h-50 mx-auto dark:text-white">
+    <div className="relative w-44 h-44 sm:w-50 sm:h-50 mx-auto dark:text-white">
       <Doughnut data={data} options={options} />
       {/* legend */}
       
