@@ -27,7 +27,7 @@ const Auth = () => {
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm space-y-[8px]">
             <div>
               <label htmlFor="email-address" className="sr-only">
                 Email address
@@ -45,7 +45,7 @@ const Auth = () => {
               />
             </div>
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="sr-only ">
                 Password
               </label>
               <input
